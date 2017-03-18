@@ -1,0 +1,12 @@
+build_problem.c le programme en c modifiable qui permet de créer le problème de la taille qu'on veut
+pour le compiler :
+	gcc build_problem.c -lm -o problem.o
+cela crée le programme problem.o.
+Pour lancer ce programme :
+	./problem.o
+
+Pour créer le plan, il faut envoyer la commande ./fast-downward.py --plan-file SofAR/plan.pddl SofAR/domain_test.pddl SofAR/script_problem_test.pddl --search "astar(lmcut())"
+
+Le fichier domain_test.pddl n'a pas à être modifié (à part pour rajouter des fonctions)
+problem_test est le premier fichier problème fait main au début pour voir comment ça fonctionnait.
+
