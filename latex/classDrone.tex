@@ -1,0 +1,414 @@
+\hypertarget{classDrone}{}\section{Drone Class Reference}
+\label{classDrone}\index{Drone@{Drone}}
+
+
+{\ttfamily \#include $<$Drone.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDrone_ab692baa4be5c43b72990ce1b01bdc805}{Drone} ()
+\item 
+\hyperlink{classDrone_a667075abb1eb5c54be6418884a387d14}{$\sim$\+Drone} ()
+\item 
+std\+::string \hyperlink{classDrone_a1fcaf0892001bf12b99c838e64878d9e}{get\+Name} ()
+\item 
+void \hyperlink{classDrone_a16ee9c16220886633f98e591c9e3dac5}{set\+Current\+Position} (const geometry\+\_\+msgs\+::\+Pose\+Stamped position)
+\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{get\+Current\+Position} ()
+\item 
+void \hyperlink{classDrone_a9addfdac3dc0e676ba12c1f4ced68fbe}{set\+Next\+Position} (geometry\+\_\+msgs\+::\+Pose\+Stamped position)
+\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \hyperlink{classDrone_a6a6df41b8eae2b1d6c2b66f046fe5a24}{get\+Next\+Position} ()
+\item 
+void \hyperlink{classDrone_a8d6917c3191ec7f675b246895ffa6a0d}{set\+Publisher} (ros\+::\+Node\+Handle nh)
+\item 
+ros\+::\+Publisher \hyperlink{classDrone_aac0983a112b0b3f75c0e625bcba3a330}{get\+Publisher} ()
+\item 
+bool \hyperlink{classDrone_a106284f63c05f3f112435b2cb5c4896c}{move} (float X, float Y, float Z)
+\item 
+void \hyperlink{classDrone_a8598b7ea716264e8428a4963a13252fb}{set\+Drone} (int number, std\+::string \hyperlink{classDrone_a19bf0a73d086997ba0589984c58b62da}{path}, ros\+::\+Node\+Handle nh)
+\item 
+\hyperlink{classDrone_ab692baa4be5c43b72990ce1b01bdc805}{Drone} ()
+\item 
+\hyperlink{classDrone_a667075abb1eb5c54be6418884a387d14}{$\sim$\+Drone} ()
+\item 
+std\+::string \hyperlink{classDrone_a1fcaf0892001bf12b99c838e64878d9e}{get\+Name} ()
+\item 
+void \hyperlink{classDrone_a16ee9c16220886633f98e591c9e3dac5}{set\+Current\+Position} (const geometry\+\_\+msgs\+::\+Pose\+Stamped position)
+\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{get\+Current\+Position} ()
+\item 
+void \hyperlink{classDrone_a9addfdac3dc0e676ba12c1f4ced68fbe}{set\+Next\+Position} (geometry\+\_\+msgs\+::\+Pose\+Stamped position)
+\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \hyperlink{classDrone_a6a6df41b8eae2b1d6c2b66f046fe5a24}{get\+Next\+Position} ()
+\item 
+bool \hyperlink{classDrone_a106284f63c05f3f112435b2cb5c4896c}{move} (float X, float Y, float Z)
+\item 
+void \hyperlink{classDrone_a2ce35a5df79f379f6f8d3586d444c3f4}{set\+Drone} (int number, ros\+::\+Node\+Handle nh)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{classDrone_a19bf0a73d086997ba0589984c58b62da}{path}
+\item 
+std\+::string \hyperlink{classDrone_ac5f6c269378659247acd057142542013}{name}
+\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \hyperlink{classDrone_a190e4f63bb9a0e5b4f822fc87f2185f9}{current\+Position}
+\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \hyperlink{classDrone_a49f95c0480f27c22c122f5bb8482e914}{next\+Position}
+\item 
+ros\+::\+Publisher \hyperlink{classDrone_a4bdfc664da2ebff40d9a4b413e4ea768}{pub}
+\item 
+ros\+::\+Subscriber \hyperlink{classDrone_a8baae58c4cbe6f1a8d239fca2d3496d6}{pose\+Sub}
+\item 
+actionlib\+::\+Simple\+Action\+Client$<$ asctec\+\_\+hl\+\_\+comm\+::\+Waypoint\+Action $>$ $\ast$ \hyperlink{classDrone_a767d339ed35d7be9c8ea4709a8dccb47}{ac}
+\item 
+float \hyperlink{classDrone_a915ef72b30c96172ff8f295cbb7f47d4}{max\+Speed} =0.\+3
+\item 
+float \hyperlink{classDrone_afbbc1d4b668c6d5021344f0578c12973}{accuracy} =0.\+3
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Authors}
+B\+O\+R\+E\+L\+LO -\/ B\+R\+A\+S\+S\+E\+UR
+\end{DoxyAuthor}
+\$\+Header \$ 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDrone_ab692baa4be5c43b72990ce1b01bdc805}\label{classDrone_ab692baa4be5c43b72990ce1b01bdc805}} 
+\index{Drone@{Drone}!Drone@{Drone}}
+\index{Drone@{Drone}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{Drone()}{Drone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Drone\+::\+Drone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+18 \{
+19 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a667075abb1eb5c54be6418884a387d14}\label{classDrone_a667075abb1eb5c54be6418884a387d14}} 
+\index{Drone@{Drone}!````~Drone@{$\sim$\+Drone}}
+\index{````~Drone@{$\sim$\+Drone}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{$\sim$\+Drone()}{~Drone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Drone\+::$\sim$\+Drone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+14 \{
+15 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_ab692baa4be5c43b72990ce1b01bdc805}\label{classDrone_ab692baa4be5c43b72990ce1b01bdc805}} 
+\index{Drone@{Drone}!Drone@{Drone}}
+\index{Drone@{Drone}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{Drone()}{Drone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Drone\+::\+Drone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classDrone_a667075abb1eb5c54be6418884a387d14}\label{classDrone_a667075abb1eb5c54be6418884a387d14}} 
+\index{Drone@{Drone}!````~Drone@{$\sim$\+Drone}}
+\index{````~Drone@{$\sim$\+Drone}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{$\sim$\+Drone()}{~Drone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Drone\+::$\sim$\+Drone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDrone_a0113e8f3a3f438113dca0d77c065276b}\label{classDrone_a0113e8f3a3f438113dca0d77c065276b}} 
+\index{Drone@{Drone}!get\+Current\+Position@{get\+Current\+Position}}
+\index{get\+Current\+Position@{get\+Current\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Current\+Position()}{getCurrentPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Drone\+::get\+Current\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+57 \{
+58         \textcolor{keywordflow}{return} \hyperlink{classDrone_a190e4f63bb9a0e5b4f822fc87f2185f9}{currentPosition};
+59 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a0113e8f3a3f438113dca0d77c065276b}\label{classDrone_a0113e8f3a3f438113dca0d77c065276b}} 
+\index{Drone@{Drone}!get\+Current\+Position@{get\+Current\+Position}}
+\index{get\+Current\+Position@{get\+Current\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Current\+Position()}{getCurrentPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Drone\+::get\+Current\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classDrone_a1fcaf0892001bf12b99c838e64878d9e}\label{classDrone_a1fcaf0892001bf12b99c838e64878d9e}} 
+\index{Drone@{Drone}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Drone\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+46 \{
+47     \textcolor{keywordflow}{return} \hyperlink{classDrone_ac5f6c269378659247acd057142542013}{name};
+48 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a1fcaf0892001bf12b99c838e64878d9e}\label{classDrone_a1fcaf0892001bf12b99c838e64878d9e}} 
+\index{Drone@{Drone}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string Drone\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classDrone_a6a6df41b8eae2b1d6c2b66f046fe5a24}\label{classDrone_a6a6df41b8eae2b1d6c2b66f046fe5a24}} 
+\index{Drone@{Drone}!get\+Next\+Position@{get\+Next\+Position}}
+\index{get\+Next\+Position@{get\+Next\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Next\+Position()}{getNextPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Drone\+::get\+Next\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+67 \{
+68         \textcolor{keywordflow}{return} \hyperlink{classDrone_a49f95c0480f27c22c122f5bb8482e914}{nextPosition};
+69 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a6a6df41b8eae2b1d6c2b66f046fe5a24}\label{classDrone_a6a6df41b8eae2b1d6c2b66f046fe5a24}} 
+\index{Drone@{Drone}!get\+Next\+Position@{get\+Next\+Position}}
+\index{get\+Next\+Position@{get\+Next\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Next\+Position()}{getNextPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Drone\+::get\+Next\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classDrone_aac0983a112b0b3f75c0e625bcba3a330}\label{classDrone_aac0983a112b0b3f75c0e625bcba3a330}} 
+\index{Drone@{Drone}!get\+Publisher@{get\+Publisher}}
+\index{get\+Publisher@{get\+Publisher}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{get\+Publisher()}{getPublisher()}}
+{\footnotesize\ttfamily ros\+::\+Publisher Drone\+::get\+Publisher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+77 \{
+78     \textcolor{keywordflow}{return} \hyperlink{classDrone_a4bdfc664da2ebff40d9a4b413e4ea768}{pub};
+79 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a106284f63c05f3f112435b2cb5c4896c}\label{classDrone_a106284f63c05f3f112435b2cb5c4896c}} 
+\index{Drone@{Drone}!move@{move}}
+\index{move@{move}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Drone\+::move (\begin{DoxyParamCaption}\item[{float}]{X,  }\item[{float}]{Y,  }\item[{float}]{Z }\end{DoxyParamCaption})}
+
+This function gives the order to the drone to move to a position. 
+\begin{DoxyParams}{Parameters}
+{\em the} & parameters are the cartesian coordinates where the drone has to move. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the boolean return is true if the drone has reached the position and false otherwise 
+\end{DoxyReturn}
+Message creation to the format trajectory\+\_\+msgs\+::\+Multi\+D\+O\+F\+Joint\+Trajectory for the new goal
+
+New goal sent to the drone
+
+test that the drone has reached the goal 
+\begin{DoxyCode}
+22 \{
+24     trajectory\_msgs::MultiDOFJointTrajectory poseMsg;
+25         poseMsg.header.frame\_id = \textcolor{stringliteral}{"world"};
+26     poseMsg.header.stamp = ros::Time::now();
+27         poseMsg.points.resize(1);
+28         poseMsg.points[0].transforms.resize(1);
+29         poseMsg.points[0].transforms[0].translation.x=X;
+30         poseMsg.points[0].transforms[0].translation.y=Y;
+31     poseMsg.points[0].transforms[0].translation.z=Z;
+33     \hyperlink{classDrone_aac0983a112b0b3f75c0e625bcba3a330}{getPublisher}().publish(poseMsg);
+34     ros::spinOnce();
+35 
+37     \textcolor{keywordtype}{float} error=1;
+38     \textcolor{keywordflow}{if} ( (this->\hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.x-error)>=X || (this->
+      getCurrentPosition().pose.position.x+error)<=X || (this->\hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.y-error)>=Y ||
+       (this->\hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.y+error)<=Y || (this->
+      \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.z-error)>=Z || (this->
+      \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.z+error)<=Z)
+39         \{   
+40             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+41         \}
+42     \textcolor{keywordflow}{else} \{\textcolor{keywordflow}{return} \textcolor{keyword}{false};\}    
+43 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a106284f63c05f3f112435b2cb5c4896c}\label{classDrone_a106284f63c05f3f112435b2cb5c4896c}} 
+\index{Drone@{Drone}!move@{move}}
+\index{move@{move}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Drone\+::move (\begin{DoxyParamCaption}\item[{float}]{X,  }\item[{float}]{Y,  }\item[{float}]{Z }\end{DoxyParamCaption})}
+
+This function gives the order to the drone to move to a position. 
+\begin{DoxyParams}{Parameters}
+{\em the} & parameters are the cartesian coordinates where the drone has to move. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the boolean return is true if the drone has reached the position and false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDrone_a16ee9c16220886633f98e591c9e3dac5}\label{classDrone_a16ee9c16220886633f98e591c9e3dac5}} 
+\index{Drone@{Drone}!set\+Current\+Position@{set\+Current\+Position}}
+\index{set\+Current\+Position@{set\+Current\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Current\+Position()}{setCurrentPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Drone\+::set\+Current\+Position (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped}]{position }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+51 \{
+52         \hyperlink{classDrone_a190e4f63bb9a0e5b4f822fc87f2185f9}{currentPosition}=position;
+53     std::cout<<\textcolor{stringliteral}{"position"}<<\textcolor{stringliteral}{"  "}<<\hyperlink{classDrone_a1fcaf0892001bf12b99c838e64878d9e}{getName}()<< \textcolor{stringliteral}{"  "} <<this->
+      \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.x<<\textcolor{stringliteral}{"  "}<<this->
+      \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.y<<\textcolor{stringliteral}{"  "}<<this->
+      \hyperlink{classDrone_a0113e8f3a3f438113dca0d77c065276b}{getCurrentPosition}().pose.position.z<<\textcolor{stringliteral}{"  "}<<std::endl;
+54 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a16ee9c16220886633f98e591c9e3dac5}\label{classDrone_a16ee9c16220886633f98e591c9e3dac5}} 
+\index{Drone@{Drone}!set\+Current\+Position@{set\+Current\+Position}}
+\index{set\+Current\+Position@{set\+Current\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Current\+Position()}{setCurrentPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Drone\+::set\+Current\+Position (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped}]{position }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classDrone_a2ce35a5df79f379f6f8d3586d444c3f4}\label{classDrone_a2ce35a5df79f379f6f8d3586d444c3f4}} 
+\index{Drone@{Drone}!set\+Drone@{set\+Drone}}
+\index{set\+Drone@{set\+Drone}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Drone()}{setDrone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Drone\+::set\+Drone (\begin{DoxyParamCaption}\item[{int}]{number,  }\item[{ros\+::\+Node\+Handle}]{nh }\end{DoxyParamCaption})}
+
+This function initialises the parameters of the drones 
+\begin{DoxyParams}{Parameters}
+{\em number} & \+: the number of the drone to create its name \\
+\hline
+{\em path} & \+: the path with which we can communicate with the drone \\
+\hline
+\end{DoxyParams}
+Activate communication with the drone 
+\begin{DoxyCode}
+40 \{
+41         std::string numberStr = std::to\_string(number);
+42         \hyperlink{classDrone_ac5f6c269378659247acd057142542013}{name} = \textcolor{stringliteral}{"drone"} + numberStr;
+44         \hyperlink{classDrone_a767d339ed35d7be9c8ea4709a8dccb47}{ac} = \textcolor{keyword}{new} actionlib::SimpleActionClient<asctec\_hl\_comm::WaypointAction>(nh, \textcolor{stringliteral}{"fcu/waypoint"}, \textcolor{keyword}{true});
+45     ROS\_INFO(\textcolor{stringliteral}{"Waiting for action server to start."});
+46     \hyperlink{classDrone_a767d339ed35d7be9c8ea4709a8dccb47}{ac}->waitForServer(); \textcolor{comment}{//will wait for infinite time}
+47     ROS\_INFO(\textcolor{stringliteral}{"Action server started, sending goal."});
+48     
+49     std::cout << \textcolor{stringliteral}{"the drone "} <<number<< \textcolor{stringliteral}{" is set."}<<std::endl;
+50 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a8598b7ea716264e8428a4963a13252fb}\label{classDrone_a8598b7ea716264e8428a4963a13252fb}} 
+\index{Drone@{Drone}!set\+Drone@{set\+Drone}}
+\index{set\+Drone@{set\+Drone}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Drone()}{setDrone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Drone\+::set\+Drone (\begin{DoxyParamCaption}\item[{int}]{number,  }\item[{std\+::string}]{path,  }\item[{ros\+::\+Node\+Handle}]{nh }\end{DoxyParamCaption})}
+
+This function initialises the parameters of the drones 
+\begin{DoxyParams}{Parameters}
+{\em number} & \+: the number of the drone to create its name \\
+\hline
+{\em path} & \+: the path with which we can communicate with the drone \\
+\hline
+\end{DoxyParams}
+Set the subscriber
+
+Set the publisher 
+\begin{DoxyCode}
+82 \{
+83     this->\hyperlink{classDrone_a19bf0a73d086997ba0589984c58b62da}{path} = \hyperlink{classDrone_a19bf0a73d086997ba0589984c58b62da}{path};
+84     std::string numberStr = std::to\_string(number);
+85     \hyperlink{classDrone_ac5f6c269378659247acd057142542013}{name} = \textcolor{stringliteral}{"drone"} + numberStr;
+87     \hyperlink{classDrone_a8baae58c4cbe6f1a8d239fca2d3496d6}{poseSub}= nh.subscribe<geometry\_msgs::PoseStamped>(\textcolor{stringliteral}{"/"}+\hyperlink{classDrone_a19bf0a73d086997ba0589984c58b62da}{path}+\textcolor{stringliteral}{"/odometry\_sensor1/pose"},1,&
+      \hyperlink{classDrone_a16ee9c16220886633f98e591c9e3dac5}{Drone::setCurrentPosition},\textcolor{keyword}{this});
+89     \hyperlink{classDrone_a8d6917c3191ec7f675b246895ffa6a0d}{setPublisher}(nh);
+90     std::cout << \textcolor{stringliteral}{"the drone "} <<number<< \textcolor{stringliteral}{" is set."}<<std::endl;
+91 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a9addfdac3dc0e676ba12c1f4ced68fbe}\label{classDrone_a9addfdac3dc0e676ba12c1f4ced68fbe}} 
+\index{Drone@{Drone}!set\+Next\+Position@{set\+Next\+Position}}
+\index{set\+Next\+Position@{set\+Next\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Next\+Position()}{setNextPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Drone\+::set\+Next\+Position (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Pose\+Stamped}]{position }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+62 \{
+63     \hyperlink{classDrone_a49f95c0480f27c22c122f5bb8482e914}{nextPosition}=position;
+64 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classDrone_a9addfdac3dc0e676ba12c1f4ced68fbe}\label{classDrone_a9addfdac3dc0e676ba12c1f4ced68fbe}} 
+\index{Drone@{Drone}!set\+Next\+Position@{set\+Next\+Position}}
+\index{set\+Next\+Position@{set\+Next\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Next\+Position()}{setNextPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Drone\+::set\+Next\+Position (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Pose\+Stamped}]{position }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classDrone_a8d6917c3191ec7f675b246895ffa6a0d}\label{classDrone_a8d6917c3191ec7f675b246895ffa6a0d}} 
+\index{Drone@{Drone}!set\+Publisher@{set\+Publisher}}
+\index{set\+Publisher@{set\+Publisher}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{set\+Publisher()}{setPublisher()}}
+{\footnotesize\ttfamily void Drone\+::set\+Publisher (\begin{DoxyParamCaption}\item[{ros\+::\+Node\+Handle}]{nh }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+72 \{
+73     \hyperlink{classDrone_a4bdfc664da2ebff40d9a4b413e4ea768}{pub}=nh.advertise<trajectory\_msgs::MultiDOFJointTrajectory>(\textcolor{stringliteral}{"/"}+\hyperlink{classDrone_a19bf0a73d086997ba0589984c58b62da}{path}+\textcolor{stringliteral}{"/command/trajectory"},1);
+74 \}    
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classDrone_a767d339ed35d7be9c8ea4709a8dccb47}\label{classDrone_a767d339ed35d7be9c8ea4709a8dccb47}} 
+\index{Drone@{Drone}!ac@{ac}}
+\index{ac@{ac}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{ac}{ac}}
+{\footnotesize\ttfamily actionlib\+::\+Simple\+Action\+Client$<$asctec\+\_\+hl\+\_\+comm\+::\+Waypoint\+Action$>$$\ast$ Drone\+::ac\hspace{0.3cm}{\ttfamily [protected]}}
+
+how to communicate with the drone \mbox{\Hypertarget{classDrone_afbbc1d4b668c6d5021344f0578c12973}\label{classDrone_afbbc1d4b668c6d5021344f0578c12973}} 
+\index{Drone@{Drone}!accuracy@{accuracy}}
+\index{accuracy@{accuracy}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{accuracy}{accuracy}}
+{\footnotesize\ttfamily float Drone\+::accuracy =0.\+3\hspace{0.3cm}{\ttfamily [protected]}}
+
+accuracy of the drone \mbox{\Hypertarget{classDrone_a190e4f63bb9a0e5b4f822fc87f2185f9}\label{classDrone_a190e4f63bb9a0e5b4f822fc87f2185f9}} 
+\index{Drone@{Drone}!current\+Position@{current\+Position}}
+\index{current\+Position@{current\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{current\+Position}{currentPosition}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Drone\+::current\+Position\hspace{0.3cm}{\ttfamily [protected]}}
+
+current position of the drone
+
+Current position of the drone \mbox{\Hypertarget{classDrone_a915ef72b30c96172ff8f295cbb7f47d4}\label{classDrone_a915ef72b30c96172ff8f295cbb7f47d4}} 
+\index{Drone@{Drone}!max\+Speed@{max\+Speed}}
+\index{max\+Speed@{max\+Speed}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{max\+Speed}{maxSpeed}}
+{\footnotesize\ttfamily float Drone\+::max\+Speed =0.\+3\hspace{0.3cm}{\ttfamily [protected]}}
+
+maximum speed of the drone \mbox{\Hypertarget{classDrone_ac5f6c269378659247acd057142542013}\label{classDrone_ac5f6c269378659247acd057142542013}} 
+\index{Drone@{Drone}!name@{name}}
+\index{name@{name}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Drone\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+name of the drone
+
+Name of the drone \mbox{\Hypertarget{classDrone_a49f95c0480f27c22c122f5bb8482e914}\label{classDrone_a49f95c0480f27c22c122f5bb8482e914}} 
+\index{Drone@{Drone}!next\+Position@{next\+Position}}
+\index{next\+Position@{next\+Position}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{next\+Position}{nextPosition}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Drone\+::next\+Position\hspace{0.3cm}{\ttfamily [protected]}}
+
+next position of the drone
+
+Next position of the drone \mbox{\Hypertarget{classDrone_a19bf0a73d086997ba0589984c58b62da}\label{classDrone_a19bf0a73d086997ba0589984c58b62da}} 
+\index{Drone@{Drone}!path@{path}}
+\index{path@{path}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily std\+::string Drone\+::path\hspace{0.3cm}{\ttfamily [protected]}}
+
+Path used to communicate with the drone \mbox{\Hypertarget{classDrone_a8baae58c4cbe6f1a8d239fca2d3496d6}\label{classDrone_a8baae58c4cbe6f1a8d239fca2d3496d6}} 
+\index{Drone@{Drone}!pose\+Sub@{pose\+Sub}}
+\index{pose\+Sub@{pose\+Sub}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{pose\+Sub}{poseSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Drone\+::pose\+Sub\hspace{0.3cm}{\ttfamily [protected]}}
+
+subscriber to know the current position of the drone \mbox{\Hypertarget{classDrone_a4bdfc664da2ebff40d9a4b413e4ea768}\label{classDrone_a4bdfc664da2ebff40d9a4b413e4ea768}} 
+\index{Drone@{Drone}!pub@{pub}}
+\index{pub@{pub}!Drone@{Drone}}
+\subsubsection{\texorpdfstring{pub}{pub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Drone\+::pub\hspace{0.3cm}{\ttfamily [protected]}}
+
+publisher to give the next position to the drone 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+pddl\+\_\+\+Gazebo/include/\hyperlink{pddl__Gazebo_2include_2Drone_8h}{Drone.\+h}\item 
+pddl\+\_\+\+Gazebo/lib/\hyperlink{pddl__Gazebo_2lib_2Drone_8cpp}{Drone.\+cpp}\end{DoxyCompactItemize}

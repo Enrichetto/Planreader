@@ -1,0 +1,68 @@
+\hypertarget{pddl__realDrones_2lib_2Drone_8cpp}{}\section{pddl\+\_\+real\+Drones/lib/\+Drone.cpp File Reference}
+\label{pddl__realDrones_2lib_2Drone_8cpp}\index{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}}
+{\ttfamily \#include \char`\"{}Drone.\+h\char`\"{}}\newline
+Include dependency graph for Drone.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{pddl__realDrones_2lib_2Drone_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pddl__realDrones_2lib_2Drone_8cpp_a9e24a1a9a80fc7fc15b7f2f9e09f8b86}{feedback\+CB} (const asctec\+\_\+hl\+\_\+comm\+::\+Waypoint\+Feedback\+Const\+Ptr \&fb)
+\item 
+void \hyperlink{pddl__realDrones_2lib_2Drone_8cpp_a95e6fd6e0fa68d392b633b686f5ea889}{active\+Cb} ()
+\item 
+void \hyperlink{pddl__realDrones_2lib_2Drone_8cpp_abf245bd90872a8610d5b8a7981fc338f}{done\+Cb} (const actionlib\+::\+Simple\+Client\+Goal\+State \&state, const asctec\+\_\+hl\+\_\+comm\+::\+Waypoint\+Result\+Const\+Ptr \&result)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pddl__realDrones_2lib_2Drone_8cpp_a95e6fd6e0fa68d392b633b686f5ea889}\label{pddl__realDrones_2lib_2Drone_8cpp_a95e6fd6e0fa68d392b633b686f5ea889}} 
+\index{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}!active\+Cb@{active\+Cb}}
+\index{active\+Cb@{active\+Cb}!pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}}
+\subsubsection{\texorpdfstring{active\+Cb()}{activeCb()}}
+{\footnotesize\ttfamily void active\+Cb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+20 \{
+21     ROS\_INFO(\textcolor{stringliteral}{"Goal just went active"});
+22 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{pddl__realDrones_2lib_2Drone_8cpp_abf245bd90872a8610d5b8a7981fc338f}\label{pddl__realDrones_2lib_2Drone_8cpp_abf245bd90872a8610d5b8a7981fc338f}} 
+\index{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}!done\+Cb@{done\+Cb}}
+\index{done\+Cb@{done\+Cb}!pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}}
+\subsubsection{\texorpdfstring{done\+Cb()}{doneCb()}}
+{\footnotesize\ttfamily void done\+Cb (\begin{DoxyParamCaption}\item[{const actionlib\+::\+Simple\+Client\+Goal\+State \&}]{state,  }\item[{const asctec\+\_\+hl\+\_\+comm\+::\+Waypoint\+Result\+Const\+Ptr \&}]{result }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+25 \{
+26     \textcolor{keywordflow}{if} (state.state\_ == actionlib::SimpleClientGoalState::SUCCEEDED)
+27     \{
+28         ROS\_INFO(\textcolor{stringliteral}{"Finished in state [%s]"}, state.toString().c\_str());
+29     \}
+30     \textcolor{keywordflow}{else}
+31     \{
+32         ROS\_WARN(\textcolor{stringliteral}{"Finished in state [%s]"}, state.toString().c\_str());
+33     \}
+34     \textcolor{keyword}{const} geometry\_msgs::Point32 & wp = result->result\_pos;
+35     ROS\_INFO(\textcolor{stringliteral}{"Reached waypoint: %fm %fm %fm %f°"},wp.x, wp.y, wp.z, result->result\_yaw*180/M\_PI);
+36 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{pddl__realDrones_2lib_2Drone_8cpp_a9e24a1a9a80fc7fc15b7f2f9e09f8b86}\label{pddl__realDrones_2lib_2Drone_8cpp_a9e24a1a9a80fc7fc15b7f2f9e09f8b86}} 
+\index{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}!feedback\+CB@{feedback\+CB}}
+\index{feedback\+CB@{feedback\+CB}!pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp@{pddl\+\_\+real\+Drones/lib/\+Drone.\+cpp}}
+\subsubsection{\texorpdfstring{feedback\+C\+B()}{feedbackCB()}}
+{\footnotesize\ttfamily void feedback\+CB (\begin{DoxyParamCaption}\item[{const asctec\+\_\+hl\+\_\+comm\+::\+Waypoint\+Feedback\+Const\+Ptr \&}]{fb }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+14 \{
+15     \textcolor{keyword}{const} geometry\_msgs::Point32 & wp = fb->current\_pos;
+16     ROS\_INFO(\textcolor{stringliteral}{"got feedback: %fm %fm %fm %f° "}, wp.x, wp.y, wp.z, fb->current\_yaw*180/M\_PI);
+17 \}
+\end{DoxyCode}

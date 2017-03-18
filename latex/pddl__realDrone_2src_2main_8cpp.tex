@@ -1,0 +1,177 @@
+\hypertarget{pddl__realDrone_2src_2main_8cpp}{}\section{pddl\+\_\+real\+Drone/src/main.cpp File Reference}
+\label{pddl__realDrone_2src_2main_8cpp}\index{pddl\+\_\+real\+Drone/src/main.\+cpp@{pddl\+\_\+real\+Drone/src/main.\+cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float32.\+h$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Pose\+Stamped.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Drone.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pddl__realDrone_2src_2main_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structPoint}{Point}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}{num\+Drones}~1 /$\ast$$\ast$ @def Number of drones piloted $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pddl__realDrone_2src_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}\label{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}} 
+\index{pddl\+\_\+real\+Drone/src/main.\+cpp@{pddl\+\_\+real\+Drone/src/main.\+cpp}!num\+Drones@{num\+Drones}}
+\index{num\+Drones@{num\+Drones}!pddl\+\_\+real\+Drone/src/main.\+cpp@{pddl\+\_\+real\+Drone/src/main.\+cpp}}
+\subsubsection{\texorpdfstring{num\+Drones}{numDrones}}
+{\footnotesize\ttfamily \#define num\+Drones~1 /$\ast$$\ast$ @def Number of drones piloted $\ast$/}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pddl__realDrone_2src_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{pddl__realDrone_2src_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{pddl\+\_\+real\+Drone/src/main.\+cpp@{pddl\+\_\+real\+Drone/src/main.\+cpp}!main@{main}}
+\index{main@{main}!pddl\+\_\+real\+Drone/src/main.\+cpp@{pddl\+\_\+real\+Drone/src/main.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+$<$ first position of each drone
+
+Initialisation of the drones
+
+Initialisation of the map Counting the number of points
+
+Creating each point of the map
+
+Reading the plan
+
+Positioning each drone to its first position
+
+Sending the position read from the plan 
+\begin{DoxyCode}
+31 \{
+32    
+33     \hyperlink{structPoint}{Point} *point;
+34     std::string node;
+35     std::string action;
+36     std::string name;
+37     std::string movefrom;
+38     std::string moveto;
+39     \textcolor{keywordtype}{bool} check=0;
+40     \textcolor{keywordtype}{double} xmove;
+41     \textcolor{keywordtype}{double} ymove;
+42     \textcolor{keywordtype}{double} zmove;
+43     \textcolor{keywordtype}{int} i=0;
+44     \textcolor{keywordtype}{int} k=0; 
+45     \textcolor{keywordtype}{int} position [\hyperlink{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}{numDrones}]=\{20\textcolor{comment}{/*, 315, 512*/}\}; 
+46     \textcolor{keywordtype}{int} move=0;
+47     \hyperlink{classDrone}{Drone} drones [\hyperlink{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}{numDrones}];
+48     ros::init (argc, argv, \textcolor{stringliteral}{"pddl"});
+49     ros::NodeHandle nh;
+50     ros::Duration timeout(1);
+51 
+53     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i< \hyperlink{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}{numDrones}; i++)
+54     \{
+55         drones[i].\hyperlink{classDrone_a2ce35a5df79f379f6f8d3586d444c3f4}{setDrone}(i, nh);
+56     \}
+57 
+60     \textcolor{comment}{/*TODO use function count line who return k*/}
+61     std::ifstream file(\textcolor{stringliteral}{"/home/carabidouil/catkin\_ws/src/pddl/plan/map\_coordinates.pddl"}, std::ios\_base::in)
+      ;
+62     \textcolor{keywordflow}{if} (file.is\_open()) 
+63     \{
+64     \textcolor{keywordflow}{while} (std::getline(file, node))
+65     \{
+66             k++;
+67     \}
+68             file.close();
+69     \}
+70     \textcolor{keywordflow}{else} 
+71     \{
+72         std::cout << \textcolor{stringliteral}{"Error opening file map\_coordinates\(\backslash\)n"};
+73     \}
+74 
+76     point = \textcolor{keyword}{new} \hyperlink{structPoint}{Point}[k];
+77     std::ifstream myfile(\textcolor{stringliteral}{"/home/carabidouil/catkin\_ws/src/pddl/plan/map\_coordinates.pddl"}, 
+      std::ios\_base::in);   
+78     \textcolor{keywordflow}{if} (myfile.is\_open()) 
+79     \{
+80         \textcolor{keywordflow}{while} (myfile >> node >>xmove >> ymove>>zmove )
+81         \{
+82         point[i].\hyperlink{structPoint_a0f88d21a7c21079e24a66fa177b62d58}{node}=node;
+83             point[i].\hyperlink{structPoint_ab99c56589bc8ad5fa5071387110a5bc7}{x}=xmove;
+84             point[i].\hyperlink{structPoint_afa38be143ae800e6ad69ce8ed4df62d8}{y}=ymove;
+85             point[i].\hyperlink{structPoint_a05ba3b1dfcb19430582ae953cbbfbded}{z}=zmove;
+86             i++;   
+87     \}
+88         std::cout << \textcolor{stringliteral}{"the map is set."}<<std::endl;
+89     myfile.close() ; 
+90     \}
+91     \textcolor{keywordflow}{else} 
+92     \{
+93         std::cout << \textcolor{stringliteral}{"Error opening file map\_coordinates\(\backslash\)n"};
+94     \}
+95     
+97     std::ifstream pfile(\textcolor{stringliteral}{"/home/carabidouil/catkin\_ws/src/pddl/plan/plan.pddl"}, std::ios\_base::in);     
+98     \textcolor{keywordflow}{if} (pfile.is\_open()) 
+99     \{
+101     std::cout<<\textcolor{stringliteral}{"Positioning the drones."}<<std::endl;
+102     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<\hyperlink{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}{numDrones}; i++)
+103     \{
+104         \textcolor{keywordflow}{while}(!check)
+105         \{
+106             ros::spinOnce();
+107             check=drones[i].\hyperlink{classDrone_a106284f63c05f3f112435b2cb5c4896c}{move}(point[position[i]].x, point[position[i]].y, point[position[i]].z);
+108             sleep(15);
+109         \}
+110         check=0;    
+111         \}
+112     std::cout<< \textcolor{stringliteral}{"All drones are positioned."}<<std::endl;
+113     \textcolor{keywordtype}{int} l=0;
+115         \textcolor{keywordflow}{while} (ros::ok())
+116     \{
+117         \textcolor{keywordflow}{while} (pfile >> action >>name >> movefrom>>moveto )
+118         \{
+119             std::cout <<\textcolor{stringliteral}{"Next action is read."}<<std::endl;
+120             \textcolor{keywordtype}{int} position =0;
+121             \textcolor{keywordflow}{while}(moveto!=point[position].node)position++; 
+122             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<\hyperlink{pddl__realDrone_2src_2main_8cpp_a2cd1c8d16c60718e3142175e2a5a7656}{numDrones}; i++)
+123             \{
+124                 \textcolor{keywordflow}{if} (drones[i].getName()==name)
+125                 \{
+126                     \textcolor{keywordflow}{while}(!check)
+127                     \{
+128                         std::cout << \textcolor{stringliteral}{"the drone "} <<i<< \textcolor{stringliteral}{"is asked to move to "}<<position<<std::endl;
+129                         ros::spinOnce();
+130                         check=drones[i].\hyperlink{classDrone_a106284f63c05f3f112435b2cb5c4896c}{move}(point[position].x, point[position].y, point[position].z);
+131                         sleep(5);
+132                     \}
+133                     check=0;
+134                 \}
+135             \}
+136         \}   
+137     \}
+138     \}
+139     \textcolor{keywordflow}{else} 
+140     \{
+141         std::cout << \textcolor{stringliteral}{"Error opening file plan\(\backslash\)n"};
+142     \}
+143     getchar();
+144     \textcolor{keywordflow}{return} 0;
+145 
+146 \}
+\end{DoxyCode}

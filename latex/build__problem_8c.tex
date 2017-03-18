@@ -1,0 +1,208 @@
+\hypertarget{build__problem_8c}{}\section{Sof\+A\+R/build\+\_\+problem.c File Reference}
+\label{build__problem_8c}\index{Sof\+A\+R/build\+\_\+problem.\+c@{Sof\+A\+R/build\+\_\+problem.\+c}}
+
+
+script that builds the map and the problem for the pddl plan  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Include dependency graph for build\+\_\+problem.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{build__problem_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{build__problem_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+script that builds the map and the problem for the pddl plan 
+
+Enrico B\+O\+R\+E\+L\+LO (\href{mailto:enrico.borello@yahoo.it}{\tt enrico.\+borello@yahoo.\+it})  Louise B\+R\+A\+S\+S\+E\+UR (\href{mailto:louise.brasseur@etu.utc.fr}{\tt louise.\+brasseur@etu.\+utc.\+fr}) \begin{DoxyDate}{Date}
+March, 2017 This script takes into account the parameters of the problem and creates the map and the problem files with the pddl format. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{build__problem_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{build__problem_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{build\+\_\+problem.\+c@{build\+\_\+problem.\+c}!main@{main}}
+\index{main@{main}!build\+\_\+problem.\+c@{build\+\_\+problem.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+17 \{
+18     \textcolor{keywordtype}{float} globalLength, globalWidth, globalDepth;
+19     \textcolor{keywordtype}{float} X, Y, Z;
+20     \textcolor{keywordtype}{int} width, length, depth;
+21     \textcolor{keywordtype}{float} minSize;
+22     \textcolor{keywordtype}{int} drones;
+23     \textcolor{keywordtype}{int} area;
+24     \textcolor{keywordtype}{int} empty;
+25     \textcolor{comment}{//getting the parameters of the problem}
+26     printf(\textcolor{stringliteral}{"What is the width of your map in meters : "});
+27     scanf (\textcolor{stringliteral}{"%f"},&globalWidth);
+28     printf(\textcolor{stringliteral}{"What is the length of your map in meters : "});
+29     scanf (\textcolor{stringliteral}{"%f"},&globalLength);
+30     printf(\textcolor{stringliteral}{"What is the depth of your map in meters : "});
+31     scanf (\textcolor{stringliteral}{"%f"},&globalDepth);
+32     printf(\textcolor{stringliteral}{"What is the diameter of the biggest drone in meter : "});
+33     scanf (\textcolor{stringliteral}{"%f"},&minSize);
+34     printf(\textcolor{stringliteral}{"How many drones do you want on the map : "});
+35     scanf (\textcolor{stringliteral}{"%d"},&drones);
+36     width=floor(globalWidth/minSize);
+37     length=floor(globalLength/minSize);
+38     globalDepth = globalDepth-0.5;
+39     depth=floor(globalDepth/0.3);
+40     \textcolor{keywordtype}{int} start[drones];
+41     \textcolor{keywordtype}{int} stop[drones];
+42     \textcolor{comment}{//getting the starting and final point for each drone}
+43     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<drones; i++)
+44     \{
+45         \textcolor{keywordflow}{do} \{
+46             printf(\textcolor{stringliteral}{"Where should drone %i start : "}, i);
+47             \textcolor{keywordflow}{do} \{
+48                 printf(\textcolor{stringliteral}{"X : "});
+49                 scanf (\textcolor{stringliteral}{"%f"},&X);
+50             \} \textcolor{keywordflow}{while} (fabs(X) >= globalWidth/2);
+51             \textcolor{keywordflow}{do} \{
+52                 printf(\textcolor{stringliteral}{"Y : "});
+53                 scanf (\textcolor{stringliteral}{"%f"},&Y);
+54             \} \textcolor{keywordflow}{while} (fabs(Y) >= globalLength/2);
+55             \textcolor{keywordflow}{do} \{
+56                 printf(\textcolor{stringliteral}{"Z : "});
+57                 scanf (\textcolor{stringliteral}{"%f"},&Z);
+58             \} \textcolor{keywordflow}{while} (Z >= globalDepth+0.5 || Z < 0.5);
+59             Z=floor((Z-0.5)/0.3);
+60             Y=floor((Y+globalLength/2)/(globalLength/length));
+61             X=floor((X+globalWidth/2)/(globalWidth/width));
+62             start[i] = Z+(Y+X*length)*depth;
+63             empty=0;
+64             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<i; j++)
+65             \{
+66                 \textcolor{keywordflow}{if} (start[i]==start[j]) empty++;
+67             \}
+68         \} \textcolor{keywordflow}{while} (start[i]<0 || start[i]>=length*width*depth || empty!=0);
+69         \textcolor{keywordflow}{do} \{
+70             printf(\textcolor{stringliteral}{"Where should drone %i stop : "}, i);
+71             \textcolor{keywordflow}{do} \{
+72                 printf(\textcolor{stringliteral}{"X : "});
+73                 scanf (\textcolor{stringliteral}{"%f"},&X);
+74             \} \textcolor{keywordflow}{while} (fabs(X) >= globalWidth/2);
+75             \textcolor{keywordflow}{do} \{
+76                 printf(\textcolor{stringliteral}{"Y : "});
+77                 scanf (\textcolor{stringliteral}{"%f"},&Y);
+78             \} \textcolor{keywordflow}{while} (fabs(Y) >= globalLength/2);
+79             \textcolor{keywordflow}{do} \{
+80                 printf(\textcolor{stringliteral}{"Z : "});
+81                 scanf (\textcolor{stringliteral}{"%f"},&Z);
+82             \} \textcolor{keywordflow}{while} (Z >= globalDepth+0.5 || Z < 0.5);
+83             Z=floor((Z-0.5)/0.3);
+84             Y=floor((Y+globalLength/2)/(globalLength/length));
+85             X=floor((X+globalWidth/2)/(globalWidth/width));
+86             stop[i] = Z+(Y+X*length)*depth;
+87             empty=0;
+88             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<i; j++)
+89             \{
+90                 \textcolor{keywordflow}{if} (stop[i]==stop[j]) empty++;
+91             \}
+92         \} \textcolor{keywordflow}{while} (stop[i]<0 || stop[i]>=length*width*depth || empty!=0);
+93         
+94     \}
+95 
+96     \textcolor{comment}{//Writting the problem and map\_coordinates files}
+97     FILE *myPlanFile;
+98     FILE *myMapFile;
+99     myPlanFile = fopen(\textcolor{stringliteral}{"script\_problem\_test.pddl"}, \textcolor{stringliteral}{"w"});
+100     myMapFile = fopen(\textcolor{stringliteral}{"map\_coordinates.pddl"}, \textcolor{stringliteral}{"w"});
+101     \textcolor{keywordflow}{if} (myPlanFile!=NULL && myMapFile!=NULL)
+102     \{
+103         fprintf(myPlanFile,\textcolor{stringliteral}{"(define\(\backslash\)n\(\backslash\)t(problem script\_problem\_test )\(\backslash\)n\(\backslash\)t(:domain SofAR)\(\backslash\)n\(\backslash\)t(:objects"});
+104         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<drones; i++)
+105         \{
+106             fprintf(myPlanFile, \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)tdrone%i - drone"}, i);
+107         \}
+108         \textcolor{comment}{//defining the areas}
+109         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<width; i++)
+110         \{
+111             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<length; j++)
+112             \{
+113                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k=0; k<depth; k++)
+114                 \{
+115                     area = k+(j+i*length)*depth;
+116                     fprintf(myPlanFile, \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)tarea%i - location"}, area);
+117                     fprintf(myMapFile, \textcolor{stringliteral}{"area%i\(\backslash\)t%f\(\backslash\)t%f\(\backslash\)t%f\(\backslash\)n"}, area, i*globalWidth/width-globalWidth/2+
+      globalWidth/width/2, j*globalLength/length-globalLength/2+globalLength/length/2, k*0.3+0.5);
+118                     
+119                 \}
+120             \}
+121         \}
+122         \textcolor{comment}{//starting area of each drone}
+123         fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t)\(\backslash\)n\(\backslash\)t(:init"});
+124         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<drones; i++)
+125         \{
+126             fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(is-in drone%i area%i)"},i, start[i]); 
+127         \}
+128         \textcolor{comment}{//initialising all areas except the ones where the drones are}
+129         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<width; i++)
+130         \{
+131             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<length; j++)
+132             \{
+133                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k=0; k<depth; k++)
+134                 \{
+135                     area=k+(j+i*length)*depth;
+136                     empty=0;
+137                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} l=0; l<drones; l++)
+138                     \{
+139                         \textcolor{keywordflow}{if} (area==start[l]) empty ++;
+140                     \}
+141                     \textcolor{keywordflow}{if} (empty==0) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(is-free area%i)"}, area);
+142                 \}
+143             \}
+144         \}
+145         \textcolor{comment}{//conecting each area to the adjacent ones}
+146         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<width; i++)
+147         \{
+148             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<length; j++)
+149             \{
+150                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k=0; k<depth; k++)
+151                 \{
+152                     area = k+(j+i*length)*depth;
+153                     \textcolor{keywordflow}{if} (k-1>=0) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(connected area%i area%i)"}, area, k-1+(j+i*length
+      )*depth);
+154                     \textcolor{keywordflow}{if} (k+1<depth) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(connected area%i area%i)"}, area, k+1+(j+i*
+      length)*depth);
+155                     \textcolor{keywordflow}{if} (j-1>=0) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(connected area%i area%i)"}, area, k+((j-1)+i*
+      width)*depth);
+156                     \textcolor{keywordflow}{if} (j+1<length) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(connected area%i area%i)"}, area, k+((j+1)+i*
+      length)*depth);
+157                     \textcolor{keywordflow}{if} (i-1>=0) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(connected area%i area%i)"}, area, k+(j+(i-1)*
+      length)*depth);
+158                     \textcolor{keywordflow}{if} (i+1<length) fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t\(\backslash\)t(connected area%i area%i)"}, area, k+(j+(i+1)*
+      length)*depth);
+159                 \}
+160             \}
+161         \}
+162         \textcolor{comment}{//final state of the problem}
+163         fprintf(myPlanFile,\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t)\(\backslash\)n\(\backslash\)t(:goal (and "});
+164         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<drones; i++)
+165         \{
+166             fprintf(myPlanFile,\textcolor{stringliteral}{"(is-in drone%i area%i) (not(is-in drone%i area%i)) "} ,i, stop[i], i, start[
+      i] );
+167         \}
+168         fprintf(myPlanFile,\textcolor{stringliteral}{"))\(\backslash\)n) "});
+169 
+170         fclose(myPlanFile);
+171         fclose(myMapFile);
+172     \}
+173 \}
+\end{DoxyCode}
